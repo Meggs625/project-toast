@@ -19,7 +19,7 @@ const ICONS_BY_VARIANT = {
 };
 
 
-function Toast({ variant, message, setOpen }) {
+function Toast({ variant, message, removeToast, id }) {
   const VariantIcon = ICONS_BY_VARIANT[variant];
 
   return (
@@ -30,7 +30,7 @@ function Toast({ variant, message, setOpen }) {
       <p className={styles.content}>
         {message}
       </p>
-      <button className={styles.closeButton} onClick={() => setOpen(false)}>
+      <button className={styles.closeButton} onClick={() => removeToast(id)}>
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
