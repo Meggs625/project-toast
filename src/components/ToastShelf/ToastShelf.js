@@ -8,20 +8,6 @@ function ToastShelf() {
 
   const { toastList, setToastList } = React.useContext(ToastProviderContext);
 
-  React.useEffect(() => {
-    function handleKeyDown(e) {
-      if (e.key === "Escape") {
-        setToastList([]);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [])
-
   const removeToast = (deletedId) => {
     const filteredToasts = toastList.filter(({ id }) => id !== deletedId)
     setToastList(filteredToasts)
