@@ -1,9 +1,12 @@
 import React from 'react';
+import { ToastProviderContext } from '../providers/ToastProvider/ToastProvider';
 
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
 
-function ToastShelf({ toastList, setToastList }) {
+function ToastShelf() {
+
+  const { toastList, setToastList } = React.useContext(ToastProviderContext);
 
   const removeToast = (deletedId) => {
     const filteredToasts = toastList.filter(({ id }) => id !== deletedId)

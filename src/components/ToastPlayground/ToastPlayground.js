@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button';
+import { ToastProviderContext } from '../providers/ToastProvider/ToastProvider';
 import ToastShelf from '../ToastShelf/ToastShelf';
 import styles from './ToastPlayground.module.css';
 
@@ -10,7 +11,8 @@ function ToastPlayground() {
 
   const [selectedVariant, setSelectedVariant] = React.useState('notice');
   const [currentMessage, setCurrentMessage] = React.useState('');
-  const [toastList, setToastList] = React.useState([]);
+
+  const { toastList, setToastList } = React.useContext(ToastProviderContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +39,7 @@ function ToastPlayground() {
       </header>
 
       {toastList.length > 0 && (
-        <ToastShelf toastList={toastList} setToastList={setToastList} />
+        <ToastShelf />
       )}
 
       <form className={styles.controlsWrapper} onSubmit={(e) => handleSubmit(e)} >
@@ -61,6 +63,7 @@ function ToastPlayground() {
           >
             {VARIANT_OPTIONS.map((variant) => (
               <label htmlFor={`variant-${variant}`} key={variant}>
+
                 <input
                   id={`variant-${variant}`}
                   type="radio"
